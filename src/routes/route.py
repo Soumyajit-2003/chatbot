@@ -1,0 +1,10 @@
+from fastapi import APIRouter
+from src.handlers.handler import chat_agent_handler
+
+router = APIRouter()
+
+@router.post("/chat")
+def chat_agent_route(message: str) -> dict[str,str]:
+    """
+    """
+    return chat_agent_handler(message=message)
