@@ -24,7 +24,7 @@ if prompt := st.chat_input("What is up?"):
         params={
             "message": prompt
         }
-    ).json()["message"]
+    ).json()["message"][-1]["content"]
         # Display assistant response in chat message container
     with st.chat_message("assistant"):
         st.markdown(response)

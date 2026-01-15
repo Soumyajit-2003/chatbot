@@ -1,10 +1,26 @@
 from fastapi import APIRouter
-from src.handlers.handler import chat_agent_handler
+from src.handlers.handler import (chat_agent_handler,get_all_threads_handler,chat_history_handler)
 from src.agents.chat_agents.states.chat_agent_state import ChatAgentState
 router = APIRouter()
 
-@router.post("/chat")
-def chat_agent_route(message: str) -> ChatAgentState:
+@router.post("/chat/{thread_id}")
+def chat_agent_route(thread_id: str,message:str) -> ChatAgentState:
     """
     """
-    return chat_agent_handler(message=message)
+    return chat_agent_handler(thread_id=thread_id,message=message )
+
+
+@router.get("/threads")
+def get_all_threads() -> list[str | None]:
+    """
+    
+    """
+    return get_all_threads_handler()
+
+
+@router.get("/chat/history/{thread_id}")
+def get_chat_history(thread_id: str) ->ChatAgentState:
+    """
+    """
+    # Placeholder implementation
+    return chat_history_handler(thread_id=thread_id)
